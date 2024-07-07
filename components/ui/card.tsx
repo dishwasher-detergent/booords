@@ -19,7 +19,7 @@ const Card = React.forwardRef<
   return (
     <li
       className={cn(
-        "w-full overflow-hidden rounded-xl border border-dashed hover:border-primary hover:bg-primary/5",
+        "w-full overflow-hidden rounded-xl border border-dashed bg-background hover:border-primary",
         className,
       )}
       ref={ref}

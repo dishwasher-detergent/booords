@@ -23,7 +23,7 @@ const BoardCard = ({ title }: BoardCardProps) => {
 
   return (
     <Card
-      className="bg-background transition-[rotate]"
+      className="list-none transition-[rotate]"
       ref={setNodeRef}
       {...listeners}
       style={{
