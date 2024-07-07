@@ -19,7 +19,7 @@ const BoardArea = ({ id, items }: BoardAreaProps) => {
   });
 
   return (
-    <CardContainer ref={setNodeRef} className="min-h-24">
+    <CardContainer ref={setNodeRef}>
       <SortableContext
         items={items}
         id={id}
@@ -28,6 +28,9 @@ const BoardArea = ({ id, items }: BoardAreaProps) => {
         {items.map((task, index) => (
           <BoardCard id={task} key={index} />
         ))}
+        {items.length == 0 && (
+          <div className="h-24 w-full rounded-xl bg-muted" />
+        )}
       </SortableContext>
     </CardContainer>
   );
