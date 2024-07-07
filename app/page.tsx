@@ -167,7 +167,6 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col">
-      {activeId}
       <BoardContainer>
         <DndContext
           sensors={sensors}
@@ -325,7 +324,12 @@ export default function Home() {
           <DragOverlay adjustScale={true} dropAnimation={dropAnimation}>
             {activeId ? (
               containers.includes(activeId) ? (
-                <p>container</p>
+                <Board
+                  title={findContainer(activeId) ?? ""}
+                  items={items[findContainer(activeId) ?? 0]}
+                >
+                  container
+                </Board>
               ) : (
                 <BoardCard
                   id={items[findContainer(activeId) ?? 0][getIndex(activeId)]}

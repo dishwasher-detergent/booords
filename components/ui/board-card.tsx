@@ -8,7 +8,6 @@ import {
   CardLabelContainer,
   CardTitle,
 } from "@/components/ui/card";
-import { useMountStatus } from "@/hooks/useMountStatus";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -17,20 +16,9 @@ interface BoardCardProps {
 }
 
 const BoardCard = ({ id }: BoardCardProps) => {
-  const {
-    setNodeRef,
-    listeners,
-    isDragging,
-    isSorting,
-    over,
-    overIndex,
-    transform,
-    transition,
-  } = useSortable({
+  const { setNodeRef, listeners, transform, transition } = useSortable({
     id,
   });
-  const mounted = useMountStatus();
-  const mountedWhileDragging = isDragging && !mounted;
 
   return (
     <Card
