@@ -8,16 +8,17 @@ import {
   CardLabelContainer,
   CardTitle,
 } from "@/components/ui/card";
+import { UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 interface BoardCardProps {
-  id: string;
+  title: string | UniqueIdentifier;
 }
 
-const BoardCard = ({ id }: BoardCardProps) => {
+const BoardCard = ({ title }: BoardCardProps) => {
   const { setNodeRef, listeners, transform, transition } = useSortable({
-    id,
+    id: title,
   });
 
   return (
@@ -42,7 +43,7 @@ const BoardCard = ({ id }: BoardCardProps) => {
           <CardLabel />
           <CardLabel />
         </CardLabelContainer>
-        <CardTitle>{id}</CardTitle>
+        <CardTitle>{title}</CardTitle>
         {/* <CardDescription>
           Testing Testing Testing Testing Testing Testing Testing TestingTesting
           Testing Testing Testing Testing TestingTesting

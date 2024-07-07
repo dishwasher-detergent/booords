@@ -31,13 +31,13 @@ import { LucidePlus } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { unstable_batchedUpdates } from "react-dom";
 
-type Items = Record<string, string[]>;
+type Items = Record<string, UniqueIdentifier[]>;
 
 export const TRASH_ID = "void";
 export const PLACEHOLDER_ID = "placeholder";
 
 export default function Home() {
-  const [items, setItems] = useState<any>(() => ({
+  const [items, setItems] = useState<Items>(() => ({
     A: createRange(5, (index) => `A${index + 1}`),
     B: createRange(5, (index) => `B${index + 1}`),
     C: createRange(5, (index) => `C${index + 1}`),
@@ -158,7 +158,7 @@ export default function Home() {
 
     unstable_batchedUpdates(() => {
       setContainers((containers) => [...containers, newContainerId]);
-      setItems((items: any) => ({
+      setItems((items) => ({
         ...items,
         [newContainerId]: [],
       }));
@@ -195,11 +195,11 @@ export default function Home() {
             }
 
             if (activeContainer !== overContainer) {
-              setItems((items: any) => {
+              setItems((items) => {
                 const activeItems = items[activeContainer];
                 const overItems = items[overContainer];
-                const overIndex = overItems.indexOf(overId.toString());
-                const activeIndex = activeItems.indexOf(active.id.toString());
+                const overIndex = overItems.indexOf(overId);
+                const activeIndex = activeItems.indexOf(active.id);
 
                 let newIndex: number;
 
@@ -225,7 +225,7 @@ export default function Home() {
                 return {
                   ...items,
                   [activeContainer]: items[activeContainer].filter(
-                    (item: any) => item !== active.id,
+                    (item) => item !== active.id,
                   ),
                   [overContainer]: [
                     ...items[overContainer].slice(0, newIndex),
@@ -264,10 +264,10 @@ export default function Home() {
             }
 
             if (overId === TRASH_ID) {
-              setItems((items: any) => ({
+              setItems((items) => ({
                 ...items,
                 [activeContainer]: items[activeContainer].filter(
-                  (id: any) => id !== activeId,
+                  (id) => id !== activeId,
                 ),
               }));
               setActiveId(null);
@@ -279,10 +279,10 @@ export default function Home() {
 
               unstable_batchedUpdates(() => {
                 setContainers((containers) => [...containers, newContainerId]);
-                setItems((items: any) => ({
+                setItems((items) => ({
                   ...items,
                   [activeContainer]: items[activeContainer].filter(
-                    (id: any) => id !== activeId,
+                    (id) => id !== activeId,
                   ),
                   [newContainerId]: [active.id],
                 }));
@@ -298,7 +298,7 @@ export default function Home() {
               const overIndex = items[overContainer].indexOf(overId);
 
               if (activeIndex !== overIndex) {
-                setItems((items: any) => ({
+                setItems((items) => ({
                   ...items,
                   [overContainer]: arrayMove(
                     items[overContainer],
@@ -332,7 +332,9 @@ export default function Home() {
                 </Board>
               ) : (
                 <BoardCard
-                  id={items[findContainer(activeId) ?? 0][getIndex(activeId)]}
+                  title={
+                    items[findContainer(activeId) ?? 0][getIndex(activeId)]
+                  }
                 />
               )
             ) : null}

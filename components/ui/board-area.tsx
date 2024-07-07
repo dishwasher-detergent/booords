@@ -26,7 +26,7 @@ const BoardArea = ({ id, items }: BoardAreaProps) => {
         strategy={verticalListSortingStrategy}
       >
         {items.map((task, index) => (
-          <BoardCard id={task} key={index} />
+          <BoardCard title={task} key={index} />
         ))}
         {items.length == 0 && (
           <div className="h-24 w-full rounded-xl bg-muted" />
