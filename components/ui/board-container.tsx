@@ -1,6 +1,10 @@
-const BoardContainer = ({ children }: { children: React.ReactNode }) => {
+interface BoardContainerProps {
+  children: React.ReactNode;
+}
+
+const BoardContainer = ({ children }: BoardContainerProps) => {
   return (
-    <section className="flex flex-row justify-evenly gap-4 p-4">
+    <section className="flex h-full flex-row justify-start gap-4 overflow-x-auto p-4">
       {children}
     </section>
   );

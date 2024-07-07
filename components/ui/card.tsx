@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useDraggable } from "@dnd-kit/core";
 import {
   LucideAlignLeft,
   LucideCheckSquare,
@@ -11,6 +12,10 @@ const Card = React.forwardRef<
   HTMLLIElement,
   React.HTMLAttributes<HTMLLIElement>
 >(({ className, ...props }, ref) => {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: "card",
+  });
+
   return (
     <li
       className={cn(
