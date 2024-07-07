@@ -8,17 +8,13 @@ import {
   CardLabelContainer,
   CardTitle,
 } from "@/components/ui/card";
-import { UniqueIdentifier } from "@dnd-kit/core";
+import { Task } from "@/interfaces/task.interface";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-interface BoardCardProps {
-  title: string | UniqueIdentifier;
-}
-
-const BoardCard = ({ title }: BoardCardProps) => {
+const BoardCard = ({ $id, title }: Task) => {
   const { setNodeRef, listeners, transform, transition } = useSortable({
-    id: title,
+    id: $id,
   });
 
   return (

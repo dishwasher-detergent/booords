@@ -7,14 +7,15 @@ import { BoardArea } from "./board-area";
 import { Button } from "./button";
 
 interface BoardProps {
+  id: string;
   title: string;
   children?: React.ReactNode;
   items: any[];
 }
 
-const Board = ({ title, children, items }: BoardProps) => {
+const Board = ({ id, title, children, items }: BoardProps) => {
   const { setNodeRef, listeners, transform, transition } = useSortable({
-    id: title,
+    id: id,
   });
 
   return (
@@ -36,7 +37,7 @@ const Board = ({ title, children, items }: BoardProps) => {
             <LucideEllipsis className="size-4" />
           </Button>
         </header>
-        <BoardArea id={title} items={items} />
+        <BoardArea id={id} items={items} />
         <footer className="flex flex-row flex-nowrap items-center gap-2">
           <Button className="flex-1 justify-start px-2" variant="ghost">
             <LucidePlus className="mr-2 size-4" />
